@@ -19,7 +19,7 @@ class Teacher(models.Model):
   email = models.EmailField(max_length=30)
   account = models.OneToOneField(Account, null=True, blank=True)
   def __unicode__(self):
-    return (self.account.user_name , self.teacher_id )
+    return u"{}, {}".format(self.account.user_name, self.teacher_id)
 
 
 class Student(models.Model):
