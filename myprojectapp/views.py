@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import classes
 
 # Create your views here.
  def base(request):
