@@ -58,7 +58,7 @@ class Attendance(models.Model):
   date = models.DateField()
   attendancs = models.NullBooleanField()
   def __unicode__(self):
-    return u"{}, {}".format ( self.student_attendance.student_id , self.classes_attendance.student_id)
+    return u"{}, {}".format ( self.student_attendance.student_id , self.classes_attendance.class_id)
 
 class BehavioralNote(models.Model):
 

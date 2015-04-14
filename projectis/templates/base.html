@@ -1,4 +1,6 @@
-<html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="http://getbootstrap.com/favicon.ico">
 
-    <title>Login</title>
+    <title>Signin Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -28,30 +30,32 @@
 
   <body>
 
-    <div class="container">
-        <h3 class="text-muted">Students Portfolio</h3>
+    <div class="title">
+          <h3 class="text-muted">Students Portfolio</h3>
 
-    </div> <!-- /container -->
-    <div class="jumbotron">
-      <form class="form-Login">
-        <h2 class="form-login-heading"></h2>
-        <label for="inputUsername" class="sr-only"> User name :</label>
-        <input type="email" id="inputUser" class="form-control" placeholder="Username" required="" autofocus="">
+      </div>
+
+    <div class="container">
+
+      <form class="form-signin">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputUsername" class="sr-only">User name </label>
+        <input type="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> Remember me
           </label>
-          <p><a href="../sticky-footer">First time ? start here</a></p>
+          <p><a href="../sticky-footer">First time? Start here</a></p>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       </form>
 
+    </div> <!-- /container -->
 
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
-
-
-</div></body></html>
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>
