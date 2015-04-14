@@ -43,7 +43,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'joins'
     'myprojectapp',
     'django.contrib.sites',
     'allauth',

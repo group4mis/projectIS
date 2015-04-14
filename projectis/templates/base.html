@@ -26,14 +26,17 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
   <body>
 
-    <div class="title">
-          <h3 class="text-muted">Students Portfolio</h3>
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+              <div class="navbar-header">
+                <a class="navbar-brand" href="#">Student protfolio</a>
+              </div>
+          </nav>
 
-      </div>
 
     <div class="container">
 
@@ -47,7 +50,11 @@
           <label>
             <input type="checkbox" value="remember-me"> Remember me
           </label>
-          <p><a href="../sticky-footer">First time? Start here</a></p>
+          <p><a href="../sticky-footer">First time? Start here</a></p> <div class="alert alert-danger" role="alert">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  Error in username or password
+</div>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       </form>
