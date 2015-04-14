@@ -11,3 +11,4 @@ urlpatterns = patterns('',
     url(r'^accounts/',include('allauth.urls')),
     url(r'^$', TemplateView.as_view(template_name='base.html'))
 )
+ #bl video 7a6 ena nbdl elklma w n76 bdalha joins.view  b a5r s6r code hni bs hni mafe .view.home :/
