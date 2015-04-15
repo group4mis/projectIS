@@ -9,5 +9,6 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/',include('allauth.urls')),
-    url(r'^$', TemplateView.as_view(template_name='base.html'))
+    url(r'^$', TemplateView.as_view(template_name='base.html')),
+    url(r'^$', 'projectis.views.registration', name='registration'),
 )
