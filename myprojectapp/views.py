@@ -8,8 +8,9 @@ def base(request):
    return render(request, templates, context)
 =======
 
-   return HttpResponseRedirect('/registration')
-   return render_to_response("base.html",locals(),context_instance_RequestContext(request))
+   context = {}
+   templates = "base.html"
+   return render(request, templates, context)
 
 def registration(request):
 
