@@ -1,18 +1,14 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
-# Create your views here.
+
+#Create your views here.
+@login_required
 def base(request):
-<<<<<<< HEAD
-   context = {}
-   templates = "base.html"
-   return render(request, templates, context)
-=======
+    context = {}
+    templates = "base.html"
+    return render(request, templates, context)
 
-   context = {}
-   templates = "base.html"
-   return render(request, templates, context)
 
-def registration(request):
-
- return render(request, "projectis/registration.html")
->>>>>>> origin/master
+def dashboard(request):
+    return render(request, "account/dashboard.html")

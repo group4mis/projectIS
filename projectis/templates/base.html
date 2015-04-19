@@ -34,37 +34,28 @@
 
       <nav class="navbar navbar-inverse navbar-fixed-top">
               <div class="navbar-header">
-                <a class="navbar-brand" href="#">Student protfolio</a>
+                  <ul>
+                    <li><a class="navbar-brand" href="#">Student protfolio</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
+                    <li><a href="{% url 'account_change_password' %}">change_password</a></li>
+                 	<li><a href="{% url 'account_logout' %}">Sign Out</a></li>
+                	{% else %}
+                    <li><a href="{% url 'account_login' %}">Sign In</a></li>
+
+                	{% endif %}
+                </ul>
               </div>
           </nav>
 
 
     <div class="container">
-
-      <form class="form-signin">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <br> <br>
-        <label for="inputUsername" class="sr-only">User name </label>
-        <input type="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
-        <br> <br>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-          <br> <br>
-          <li><a href ='/registration/'>First time? Start here</a></li>
-
-           <div class="alert alert-danger" role="alert">
-  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-  <span class="sr-only">Error:</span>
-  Error in username or password
-</div>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      </form>
-
+        <br><br><br><br>
+        {% block content %}
+        <p>
+            Welcome to the student portfolio service
+        </p>
+        {% endblock %}
     </div> <!-- /container -->
 
 

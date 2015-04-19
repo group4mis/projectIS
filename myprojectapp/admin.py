@@ -4,12 +4,6 @@ from django.contrib import admin
 
 from .models import *
 
-class AccountAdmin(admin.ModelAdmin):
-
- list_display = ('user_name', 'type_of_user', 'password' , )
- list_filter = ('type_of_user', )
- search_fields = ('user_name', )
-
 class TeacherAdmin(admin.ModelAdmin):
 
  list_display = ('teacher_id', 'first_name', 'last_name' ,'email','account', )
@@ -62,7 +56,6 @@ class MeetingAdmin(admin.ModelAdmin):
  search_fields = ('date', )
 
 
-admin.site.register(Account ,AccountAdmin )
 admin.site.register(Teacher ,TeacherAdmin)
 admin.site.register(Student ,StudentAdmin)
 admin.site.register(Parents,ParentsAdmin)

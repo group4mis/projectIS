@@ -1,15 +1,10 @@
 
 from django.db import models
+from django.conf import settings
 
 # Create your models here.
 
-class Account(models.Model):
 
-  user_name = models.CharField(max_length=30,unique=True)
-  type_of_user = models.CharField(max_length=20)
-  password = models.CharField(max_length=30)
-  def __unicode__(self):
-    return self.user_name
 
 class Teacher(models.Model):
 
@@ -17,9 +12,9 @@ class Teacher(models.Model):
   first_name = models.CharField(max_length=30)
   last_name = models.CharField(max_length=30)
   email = models.EmailField(max_length=30)
-  account = models.OneToOneField(Account, null=True, blank=True)
+  account = models.OneToOneField(settings.AUTH_USER_MODEL, null=True, blank=True)
   def __unicode__(self):
-    return u"{}, {} {}".format(self.account.user_name, self.first_name , self.last_name)
+    return u"{}, {} {}".format(self.account.username, self.first_name , self.last_name)
 
 class Student(models.Model):
 
@@ -27,17 +22,17 @@ class Student(models.Model):
   first_name = models.CharField(max_length=30)
   last_name = models.CharField(max_length=30)
   email = models.EmailField(max_length=30)
-  account = models.OneToOneField(Account, null=True, blank=True)
+  account = models.OneToOneField(settings.AUTH_USER_MODEL, null=True, blank=True)
   def __unicode__(self):
-    return u"{}, {}".format(self.account.user_name , self.student_id)
+    return u"{}, {}".format(self.account.username , self.student_id)
 
 class Parents(models.Model):
 
   parents_id = models.CharField(max_length=20,unique=True)
   email = models.EmailField(max_length=30)
-  account = models.OneToOneField(Account, null=True, blank=True)
+  account = models.OneToOneField(settings.AUTH_USER_MODEL, null=True, blank=True)
   def __unicode__(self):
-    return u"{}, {}".format(self.account.user_name , self.parents_id)
+    return u"{}, {}".format(self.account.username , self.parents_id)
 
 class Classes(models.Model):
 
