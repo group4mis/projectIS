@@ -15,4 +15,7 @@ def dashboard(request):
 
 def teacher_classes(request):
     qs= classes.objects.all()
-    return render(request, "account/teacher.html", {"classes":qs})
+    return render(request, "account/teacher_classes.html", {"classes":qs})
+
+def update_classes(request):
+    return render(request, "account/update_classes.html")
