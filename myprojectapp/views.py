@@ -12,3 +12,7 @@ def base(request):
 
 def dashboard(request):
     return render(request, "account/dashboard.html")
+
+def teacher_classes(request):
+    qs= classes.objects.all()
+    return render(request, "account/teacher.html", {"classes":qs})
