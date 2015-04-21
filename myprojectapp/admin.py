@@ -1,12 +1,13 @@
 from django.contrib import admin
 
+
 # Register your models here.
 
 from .models import *
 
 class TeacherAdmin(admin.ModelAdmin):
 
- list_display = ('teacher_id', 'first_name', 'last_name' ,'email','account', )
+ list_display = ('teacher_id', 'first_name', 'last_name' ,'email','account' ,)
  search_fields = ('teacher_id', )
 
 class StudentAdmin(admin.ModelAdmin):
@@ -16,7 +17,7 @@ class StudentAdmin(admin.ModelAdmin):
 
 class ParentsAdmin(admin.ModelAdmin):
 
- list_display = ('parents_id','email','account', )
+ list_display = ('parents_id','email','account', 'parent_student' ,)
  search_fields = ('parents_id', )
 
 class ClassesAdmin(admin.ModelAdmin):
