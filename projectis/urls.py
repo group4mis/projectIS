@@ -5,7 +5,7 @@ urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'myprojectapp.views.base', name='home'),
     url(r'^add_classes/$', 'myprojectapp.views.add_classes', name='add_classes'),
-    url(r'^delete_class/$', 'myprojectapp.views.delete_class', name='delete_class'),
+    url(r'^delete_classes/$', 'myprojectapp.views.delete_classes', name='delete_classes'),
 
     #url(r'^blog/', include('blog.urls')),
 

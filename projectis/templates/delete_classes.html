@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+  <div class="container">
+    <br> <br>
+    <br> <br>
+ <h1>Delete classes :</h1>
+    <br> <br>
+    <ul>
+        {% for c in classes %}
+            <li>
+     <a href="{% url 'delete_classes' %}">
+            {{ c.class_name }}
+        </a>
+            </li>
+        {% endfor %}
+    </div> <!-- /container -->
+    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar"style ="float:right">
+          <div class="list-group">
+            <a href="{% url 'add_classes' %}" class="list-group-item">Add classes</a>
+        </div><!--/.sidebar-offcanvas-->
+      </div><!--/row-->
+        </ul>
+        <br> <br>
+        <br> <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <input type="submit" value="Delete" />
+
+
+{% endblock %}

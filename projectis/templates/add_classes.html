@@ -1,18 +1,30 @@
 {% extends "base.html" %}
 
 {% block content %}
-   &nbsp;&nbsp;<h1>Add class :</h1>
+<br> <br>
+<br> <br>
+<br> <br>
+</div> <!-- /container -->
+ <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar"style ="float:right">
+    <div class="list-group">
+      <a href="{% url 'delete_classes' %}" class="list-group-item">Delete class</a>
+
+  </div><!--/.sidebar-offcanvas-->
+</div><!--/row-->
+
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h1>Add class :</h1>
          <br> <br>
-         &nbsp;&nbsp; <label for="ClassName:;">Class Name :&nbsp;&nbsp;</label><input type="text" id="ClassName">
+         &nbsp;&nbsp; &nbsp;&nbsp;<label for="ClassName:;">Class Name :&nbsp;&nbsp;</label><input type="text" id="ClassName">
          <br> <br>
-         &nbsp;&nbsp; <label for="Subject:">Subject :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><input type="text"  id="Subject">
+         &nbsp;&nbsp;&nbsp;&nbsp; <label for="Subject:">Subject :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><input type="text"  id="Subject">
          <br> <br>
-         &nbsp;&nbsp; <label for="GradeLevel:">Grade Level :&nbsp;&nbsp;</label><input type="text" id="GradeLevel">
+         &nbsp;&nbsp; &nbsp;&nbsp;<label for="GradeLevel:">Grade Level :&nbsp;&nbsp;</label><input type="text" id="GradeLevel">
          <br> <br>
-         &nbsp;&nbsp; <label for="Semester:">Semester :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><input type="text" id="Semester:">
+         &nbsp;&nbsp;&nbsp;&nbsp; <label for="Semester:">Semester :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><input type="text" id="Semester:">
          <br> <br>
-         &nbsp;&nbsp;<label for="Year:">Subject :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><input type="text"  id="Subject">
+         &nbsp;&nbsp;&nbsp;&nbsp;<label for="Year:">Subject :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><input type="text"  id="Subject">
          <br> <br>
-         &nbsp;&nbsp;&nbsp;&nbsp; <input type="submit" value="Save" />
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="submit" value="Save" />
+
 
 {% endblock %}

@@ -12,10 +12,13 @@ def base(request):
         "classes": qs,
     })
 
-def delete_class(request):
-    context = {}
-    templates = "delete_class.html"
-    return render(request, templates, context)
+def delete_classes(request):
+    user = request.user
+    qs = Classes.objects.filter(classes_teacher__account=user)
+    return render(request, "delete_classes.html", {
+        "user": user,
+        "classes": qs,
+        })
 
 def add_classes(request):
 
