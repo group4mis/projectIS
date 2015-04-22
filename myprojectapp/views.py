@@ -1,14 +1,34 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-
+from .models import Classes
 
 #Create your views here.
 @login_required
 def base(request):
+    user = request.user
+    qs = Classes.objects.filter(classes_teacher__account=user)
+    return render(request, "base.html", {
+        "user": user,
+        "classes": qs,
+    })
+
+def update_class(request):
     context = {}
-    templates = "base.html"
+    templates = "Update_class.html"
+    return render(request, templates, context)
+
+def add_classes(request):
+
+    context = {}
+    templates = "add_classes.html"
     return render(request, templates, context)
 
 
-def dashboard(request):
-    return render(request, "account/dashboard.html")
+
+
+#def teacher_classes(request):
+
+#    {% if request.user.is_authenticated %}
+#    request.user.get_username()
+#    return render(request, "teacher_classes.html")
+#    query_results = Classes.objects.all()

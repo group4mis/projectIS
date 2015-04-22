@@ -47,9 +47,11 @@
        <div id="navbar" class="collapse navbar-collapse">
          <ul class="nav navbar-nav">
              {% if user.is_authenticated %}
+           <li><a href="{% url 'home' %}">Home</a></li>
            <li class="active"><a href="{% url 'account_email' %}">Change E-mail</a></li>
            <li><a href="{% url 'account_change_password' %}">change_password</a></li>
            <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
+
            {% else %}
            <li><a href="{% url 'account_login' %}">Sign In</a></li>
            {% endif %}
@@ -67,9 +69,21 @@
     <div class="container">
         <br><br><br><br>
         {% block content %}
-        <p>
-            Welcome to the student portfolio service
-        </p>
+        <br> <br>
+        <h1>{{ user.username }} classes :</h1>
+        <br> <br>
+
+
+        <ul>
+            {% for c in classes %}
+                <li>
+                    <a href="{% url 'home' %}">
+                        {{ c.class_name }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+
         {% endblock %}
     </div> <!-- /container -->
 
