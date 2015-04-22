@@ -22,13 +22,3 @@ def add_classes(request):
     context = {}
     templates = "add_classes.html"
     return render(request, templates, context)
-
-
-
-
-#def teacher_classes(request):
-
-#    {% if request.user.is_authenticated %}
-#    request.user.get_username()
-#    return render(request, "teacher_classes.html")
-#    query_results = Classes.objects.all()
