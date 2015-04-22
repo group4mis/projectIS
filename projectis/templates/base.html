@@ -63,29 +63,36 @@
 
 
 
-
+   {% block content %}
 
 
     <div class="container">
-        <br><br><br><br>
-        {% block content %}
         <br> <br>
-        <h1>{{ user.username }} classes :</h1>
         <br> <br>
-
-
+     <h1>{{ user.username }} classes :</h1>
+        <br> <br>
         <ul>
             {% for c in classes %}
                 <li>
-                    <a href="{% url 'home' %}">
-                        {{ c.class_name }}
-                    </a>
+         <a href="{% url 'home' %}">
+                {{ c.class_name }}
+            </a>
                 </li>
             {% endfor %}
         </ul>
-
-        {% endblock %}
     </div> <!-- /container -->
+    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar"style ="float:right">
+          <div class="list-group">
+            <a href="{% url 'add_classes' %}" class="list-group-item">Add classes</a>
+            <a href="{% url 'add_classes' %}" class="list-group-item">Delete class</a>
+
+        </div><!--/.sidebar-offcanvas-->
+      </div><!--/row-->
+
+      {% endblock %}
+
+
+
 
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

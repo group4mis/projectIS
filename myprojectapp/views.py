@@ -12,9 +12,9 @@ def base(request):
         "classes": qs,
     })
 
-def update_class(request):
+def delete_class(request):
     context = {}
-    templates = "Update_class.html"
+    templates = "delete_class.html"
     return render(request, templates, context)
 
 def add_classes(request):
