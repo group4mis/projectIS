@@ -25,3 +25,11 @@ def add_classes(request):
     context = {}
     templates = "add_classes.html"
     return render(request, templates, context)
+
+def grades(request):
+    user=request.user
+    qs=grades.objects.filter(grades=user)
+    return render(request,"grades.html"){
+    "user":user
+    "grades":qs,
+    }
