@@ -34,7 +34,7 @@ class AttendanceAdmin(admin.ModelAdmin):
 
 class BehavioralNoteAdmin(admin.ModelAdmin):
 
- list_display = ('behavioral_note_id', 'date', 'behavioral_note' ,'student_behavioralnote','teacher_behavioralnote', )
+ list_display = ('behavioral_note_id', 'date', 'behavioral_note' ,'parents_behavioralnote','teacher_behavioralnote', )
  list_filter = ('date', )
  search_fields = ('date', )
 

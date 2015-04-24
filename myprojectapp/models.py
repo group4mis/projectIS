@@ -36,7 +36,7 @@ class Parents(models.Model):
   parent_student = models.OneToOneField(Student, blank=True)
 
   def __unicode__(self):
-    return u"{}, {}, {}".format(self.account.username , self.parents_id , self.parent_student .student_id )
+    return u"{}, {}, {} , {} {}".format(self.account.username , self.parents_id , self.parent_student.student_id ,self.parent_student.first_name , self.parent_student.last_name)
 
 class Classes(models.Model):
 
@@ -59,17 +59,17 @@ class Attendance(models.Model):
   date = models.DateField()
   attendancs = models.NullBooleanField()
   def __unicode__(self):
-    return u"{}, {}".format ( self.student_attendance.student_id , self.classes_attendance.class_name)
+    return u"{},{} {} ,{}".format ( self.student_attendance.student_id ,self.student_attendance.first_name ,self.student_attendance.last_name , self.classes_attendance.class_name)
 
 class BehavioralNote(models.Model):
 
   behavioral_note_id = models.IntegerField(max_length=30,unique=True)
   date = models.DateField()
   behavioral_note  = models.TextField(max_length=300,)
-  student_behavioralnote= models.ForeignKey(Student, blank=True, null=True)
+  parents_behavioralnote= models.ForeignKey(Parents, blank=True, null=True)
   teacher_behavioralnote = models.ForeignKey(Teacher, blank=True, null=True)
   def __unicode__(self):
-    return u"{},{} {}".format ( self.student_behavioralnote.student_id , self.teacher_behavioralnote.first_name , self.teacher_behavioralnote.last_name)
+    return u"{},{},{} {}".format ( self.parents_behavioralnote.parent_student ,  self.parents_behavioralnote.account , self.teacher_behavioralnote.first_name , self.teacher_behavioralnote.last_name)
 
 class SpecialNote(models.Model):
 
@@ -90,7 +90,7 @@ class Grade(models.Model):
   student_grade = models.ForeignKey(Student, blank=True, null=True)
   classes_grade = models.ForeignKey(Classes, blank=True, null=True)
   def __unicode__(self):
-    return u"{}, {}".format ( self.classes_grade.class_name , self.student_grade.student_id)
+    return u"{}, {} ,{}  {}".format ( self.classes_grade.class_name , self.student_grade.student_id ,self.student_grade.first_name ,self.student_grade.last_name )
 
 class Meeting(models.Model):
 
@@ -99,5 +99,6 @@ class Meeting(models.Model):
   request_meeting  = models.TextField(max_length=300)
   parents_meeting = models.ForeignKey(Parents,blank=True, null=True)
   teacher_meeting = models.ForeignKey(Teacher,blank=True, null=True)
+
   def __unicode__(self):
-    return u"{},{} {}".format ( self. parents_meeting.parents_id , self.teacher_meeting.first_name , self.teacher_meeting.last_name)
+    return u"{},{} {}".format ( self. parents_meeting.parent_student, self.teacher_meeting.first_name , self.teacher_meeting.last_name)

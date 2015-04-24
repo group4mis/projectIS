@@ -28,24 +28,31 @@ def add_classes(request):
     templates = "add_classes.html"
     return render(request, templates, context)
 
-def grades(request):
-    user=request.user
-    qs=grades.objects.filter(grades=user)
-    return render(request,"grades.html"){
-    "user":user
-    "grades":qs,
-    }
+
+#def grades(request):
+#    user=request.user
+#    qs=grades.objects.filter(grades=user)
+#    return render(request,"grades.html"{
+#    "user":user
+#    "grades":qs,
+#    })
+
+@login_required
 def Show_Tmeetings(request):
+
     user = request.user
-    qs = Meeting.objects.filter(Show_Tmeeting__account=user)
-    return render(request, "Show_Tmeeting.html", {
+    qs = Meeting.objects.filter(teacher_meeting__account=user).all
+    return render(request, "Show_Tmeetings.html", {
         "user": user,
-        "Show_Tmeeting": qs,
+        "Meeting": qs,
         })
+
+@login_required
 def Show_Pmeetings(request):
+
     user = request.user
-    qs = Meeting.objects.filter(Show_Pmeeting__account=user)
-    return render(request, "Show_Pmeeting.html", {
+    qs = Meeting.objects.filter(parents_meeting__account=user).all
+    return render(request, "Show_Pmeetings.html", {
         "user": user,
-        "Show_Pmeeting": qs,
+        "Meeting": qs,
         })

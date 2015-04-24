@@ -1,6 +1,7 @@
 {% extends "base.html" %}
-{% block content %}
 
+
+{% block content %}
 
 <div meeting="container">
 <br> <br>
@@ -8,9 +9,15 @@
 <h1>{{ user.username }} meeting :</h1>
         <br> <br>
         <ul>
-            {% for c in meeting %}
-              <p>{{ c.teacher_meeting }}<p>
+            <h1> {% for c in Meeting %}</h1>
+            <pre>Date :{{ c.date}}   from : {{ c.parents_meeting }}  
+                 <br>
+                {{ c.request_meeting}}<br>
+                  </pre>
+
+
 
             {% endfor %}
         </ul>
     </div> <!-- /container -->
+    {% endblock %}
