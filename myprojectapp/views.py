@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .models import Classes
+from .models import Grade
+from .models import Meeting
 
 #Create your views here.
 @login_required
@@ -33,3 +35,17 @@ def grades(request):
     "user":user
     "grades":qs,
     }
+def Show_Tmeetings(request):
+    user = request.user
+    qs = Meeting.objects.filter(Show_Tmeeting__account=user)
+    return render(request, "Show_Tmeeting.html", {
+        "user": user,
+        "Show_Tmeeting": qs,
+        })
+def Show_Pmeetings(request):
+    user = request.user
+    qs = Meeting.objects.filter(Show_Pmeeting__account=user)
+    return render(request, "Show_Pmeeting.html", {
+        "user": user,
+        "Show_Pmeeting": qs,
+        })
