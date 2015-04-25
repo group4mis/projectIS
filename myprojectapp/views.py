@@ -31,7 +31,7 @@ def add_classes(request):
 
 #def grades(request):
 #    user=request.user
-#    qs=grades.objects.filter(grades=user)
+#    qs=grades.objects.filter(__account=user)
 #    return render(request,"grades.html"{
 #    "user":user
 #    "grades":qs,
@@ -55,4 +55,24 @@ def Show_Pmeetings(request):
     return render(request, "Show_Pmeetings.html", {
         "user": user,
         "Meeting": qs,
+        })
+
+@login_required
+def Show_Snotes(request):
+
+    user = request.user
+    qs = SpecialNote.objects.filter(special_note__account=user).all
+    return render(request, "Show_Snotes.html", {
+        "user": user,
+        "SpecialNote": qs,
+        })
+
+@login_required
+def Show_Bnotes(request):
+
+    user = request.user
+    qs = BehavioralNote.objects.filter(behavioral_note__account=user).all
+    return render(request, "Show_Bnotes.html", {
+        "user": user,
+        "BehavioralNote": qs,
         })

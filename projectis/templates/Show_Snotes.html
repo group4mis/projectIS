@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<div SpecialNote="container">
+<br> <br>
+<br> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h1> SpecialNote :</h1>
+        <br> <br>
+        <ul>
+            <h1> {% for c in SpecialNote %}</h1>
+            <pre> Date :{{ c.date}}   From : {{ c.teacher_specialNote }}  Class : {{c.classes_specialNote}}
+                 <br>
+                {{ c.special_note}}<br>
+                  </pre>
+
+
+
+            {% endfor %}
+        </ul>
+    </div> <!-- /container -->
+    {% endblock %}

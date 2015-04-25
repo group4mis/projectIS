@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<div BehavioralNote="container">
+<br> <br>
+<br> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h1> BehavioralNote :</h1>
+        <br> <br>
+        <ul>
+            <h1> {% for c in BehavioralNote %}</h1>
+            <pre> Date :{{ c.date}}   From : {{ c.teacher_behavioralnote }}  Class : {{c.classes_specialNote}}
+                 <br>
+                {{ c.behavioral_note}}<br>
+                  </pre>
+
+
+
+            {% endfor %}
+        </ul>
+    </div> <!-- /container -->
+    {% endblock %}
