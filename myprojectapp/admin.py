@@ -4,6 +4,7 @@ from django.contrib import admin
 # Register your models here.
 
 from .models import *
+from .forms import StudentForm
 
 class TeacherAdmin(admin.ModelAdmin):
 
@@ -17,14 +18,27 @@ class StudentAdmin(admin.ModelAdmin):
 
 class ParentsAdmin(admin.ModelAdmin):
 
- list_display = ('parents_id','email','account', 'parent_student' ,)
+ list_display = ('parents_id','email','account',)
  search_fields = ('parents_id', )
+
+
+
+
+
+class StudentClassInline(admin.TabularInline):
+    model = Classes.student_classses.through
+    form = StudentForm
+    # fields = ('student_id', 'first_name', 'last_name', 'email' , 'parent')
 
 class ClassesAdmin(admin.ModelAdmin):
 
- list_display = ('class_id', 'class_name', 'class_semester' ,'year', 'subject', 'grade_level' ,'classes_teacher', )
- list_filter = ('class_semester', )
- search_fields = ('class_name', )
+    list_display = ('class_id', 'class_name', 'class_semester' ,'year', 'subject', 'grade_level' ,'classes_teacher', )
+    list_filter = ('class_semester', )
+
+    exclude = ('student_classses', )
+
+    search_fields = ('class_name', )
+    inlines = [StudentClassInline]
 
 class AttendanceAdmin(admin.ModelAdmin):
 

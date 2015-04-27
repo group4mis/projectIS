@@ -4,7 +4,17 @@ from django.conf import settings
 
 # Create your models here.
 
+def get_account_type(user):
+    if user.parent:
+       return "parent"
 
+    if user.student:
+       return "student"
+
+    if user.teacher:
+       return "teacher"
+
+    return "unknown type"
 
 class Teacher(models.Model):
 
@@ -23,7 +33,7 @@ class Student(models.Model):
   last_name = models.CharField(max_length=30)
   email = models.EmailField(max_length=30)
   account = models.OneToOneField(settings.AUTH_USER_MODEL, null=True, blank=True)
-  student_classses=models.ManyToManyField('Classes', blank=True)
+  parent = models.ForeignKey('Parents', blank=True)
 
   def __unicode__(self):
     return u"{}, {}".format(self.account.username , self.student_id )
@@ -33,7 +43,7 @@ class Parents(models.Model):
   parents_id = models.CharField(max_length=20,unique=True)
   email = models.EmailField(max_length=30)
   account = models.OneToOneField(settings.AUTH_USER_MODEL, null=True, blank=True)
-  parent_student = models.OneToOneField(Student, blank=True)
+
 
   def __unicode__(self):
     return u"{}, {}, {} , {} {}".format(self.account.username , self.parents_id , self.parent_student.student_id ,self.parent_student.first_name , self.parent_student.last_name)
@@ -48,6 +58,7 @@ class Classes(models.Model):
   grade_level = models.IntegerField(max_length=30)
   classes_teacher= models.ForeignKey(Teacher, blank=True, null=True)
   student_classses=models.ManyToManyField('Student', blank=True)
+
 
   def __unicode__(self):
     return u"{},{}".format ( self.classes_teacher.teacher_id ,self.class_name)
