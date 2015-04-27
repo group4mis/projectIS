@@ -9,23 +9,12 @@ from .models import BehavioralNote
 @login_required
 def base(request):
     user = request.user
-
-
-
     qs = Classes.objects.filter(classes_teacher__account=user)
     return render(request, "base.html", {
         "user": user,
         "classes": qs,
     })
-    #{% if  user.account_type ="student" %}
 
-    #qs = Classes.objects.filter(student_classses__account=user)
-    #return render(request, "base.html", {
-    #"user": user,
-    #"classes": qs,
-     #})
-
-    #{% endif %}
 
 def delete_classes(request):
     user = request.user
@@ -42,13 +31,6 @@ def add_classes(request):
     return render(request, templates, context)
 
 
-#def grades(request):
-#    user=request.user
-#    qs=grades.objects.filter(__account=user)
-#    return render(request,"grades.html"{
-#    "user":user
-#    "grades":qs,
-#    })
 
 @login_required
 def Show_Tmeetings(request):
