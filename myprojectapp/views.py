@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Classes
 from .models import Grade
@@ -79,3 +79,25 @@ def class_details(request, class_id):
 
 def request_meeting(request, class_id):
     pass
+
+
+
+def product_rate(request , request_meeting_id):
+ # let’s fetch the product object
+product = get_object_or_404(Product , pk=request_meeting_id)
+
+if request.method == "POST":
+    form = RatingForm(request.POST)
+if form.is_valid():
+    form.save()
+ # the product details view function looks like this
+ # def product_details(request , pid):
+return redirect(’product_details’,pid=product.id)
+    else:
+form = RatingForm(
+initial={"product": product})
+ return render(
+ request ,
+ "rating/request_meeting.html",
+ {"form": form, "product": product}
+ )
