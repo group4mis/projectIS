@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+
+   {% block content %}
+
+   <div meeting="container">
+   <br> <br>
+   <br> <br>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h1>{{ user.username }} grade :</h1>
+           <br> <br>
+           <ul>
+
+
+     <div class="table-responsive">
+          {% for c in Grade %}
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>student</th>
+                        <th>type of grade</th>
+                        <th>total points</th>
+                        <th>grade</th>
+                        <th>total grade</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{{ c.student_grade }}</td>
+                        <td>{{ c.type_g}}</td>
+                        <td>{{ c.total_points }}</td>
+                        <td>{{ c.grade }}</td>
+                        <td>{{ c.total_grade }}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+
+           </ul>
+       </div> <!-- /container -->
+       {% endblock %}

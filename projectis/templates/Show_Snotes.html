@@ -9,7 +9,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h1> SpecialNote :</h1>
         <br> <br>
         <ul>
-            <h1> {% for c in SpecialNote %}</h1>
+             {% for c in SpecialNote %}
             <pre> Date :{{ c.date}}   From : {{ c.teacher_specialNote }}  Class : {{c.classes_specialNote}}
                  <br>
                 {{ c.special_note}}

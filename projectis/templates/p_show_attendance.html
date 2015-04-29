@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+
+   {% block content %}
+
+   <div meeting="container">
+   <br> <br>
+   <br> <br>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h1> attendance :</h1>
+           <br> <br>
+           <ul>
+
+
+     <div class="table-responsive">
+          {% for c in Attendance %}
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>student</th>
+                        <th>date</th>
+                        <th>attendancs</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{{ c.student_attendance }}</td>
+                        <td>{{ c.date}}</td>
+                        <td>{{ c.attendancs }}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+
+           </ul>
+       </div> <!-- /container -->
+       {% endblock %}

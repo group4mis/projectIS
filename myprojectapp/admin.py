@@ -8,21 +8,18 @@ from .forms import StudentForm
 
 class TeacherAdmin(admin.ModelAdmin):
 
- list_display = ('teacher_id', 'first_name', 'last_name' ,'email','account' ,)
- search_fields = ('teacher_id', )
+    list_display = ('teacher_id', 'first_name', 'last_name' ,'email','account' ,)
+    search_fields = ('teacher_id', )
 
 class StudentAdmin(admin.ModelAdmin):
 
- list_display = ('student_id', 'first_name', 'last_name','email','account', )
- search_fields = ('student_id', )
+    list_display = ('student_id', 'first_name', 'last_name','email','account','parent' )
+    search_fields = ('student_id', )
 
 class ParentsAdmin(admin.ModelAdmin):
 
- list_display = ('parents_id','email','account',)
- search_fields = ('parents_id', )
-
-
-
+    list_display = ('parents_id','email','account',)
+    search_fields = ('parents_id', )
 
 
 class StudentClassInline(admin.TabularInline):
@@ -42,33 +39,33 @@ class ClassesAdmin(admin.ModelAdmin):
 
 class AttendanceAdmin(admin.ModelAdmin):
 
- list_display = ('attendance_id', 'student_attendance','date','attendancs','classes_attendance',)
- list_filter = ('date', )
- search_fields = ('date', )
+    list_display = ('attendance_id', 'student_attendance','date','attendancs','classes_attendance',)
+    list_filter = ('date', )
+    search_fields = ('date', )
 
 class BehavioralNoteAdmin(admin.ModelAdmin):
 
- list_display = ('behavioral_note_id', 'date', 'behavioral_note' ,'parents_behavioralnote','teacher_behavioralnote', )
- list_filter = ('date', )
- search_fields = ('date', )
+    list_display = ( 'date', 'behavioral_note' ,'student_behavioralnote','teacher_behavioralnote', )
+    list_filter = ('date', )
+    search_fields = ('date', )
 
 class SpecialNoteAdmin(admin.ModelAdmin):
 
- list_display = ('special_note_id', 'date', 'special_note' ,'classes_specialNote','teacher_specialNote', )
- list_filter = ('date', )
- search_fields = ('date', )
+    list_display = ('special_note_id', 'date', 'special_note' ,'classes_specialNote','teacher_specialNote', )
+    list_filter = ('date', )
+    search_fields = ('date', )
 
 class GradeAdmin(admin.ModelAdmin):
 
- list_display = ('grade_id', 'type_g', 'grade' , 'total_points','student_grade' ,'classes_grade', )
- list_filter = ('type_g', )
- search_fields = ('type_g', )
+    list_display = ('grade_id', 'type_g', 'total_points', 'grade' , 'student_grade' ,'classes_grade','total_grade' )
+    list_filter = ('type_g', )
+    search_fields = ('type_g', )
 
 class MeetingAdmin(admin.ModelAdmin):
 
- list_display = ('request_meeting_id', 'date', 'request_meeting' ,'parents_meeting' ,'teacher_meeting', )
- list_filter = ('date', )
- search_fields = ('date', )
+    list_display = ('request_meeting_id', 'date', 'request_meeting' ,'parents_meeting' ,'teacher_meeting', )
+    list_filter = ('date', )
+    search_fields = ('date', )
 
 
 admin.site.register(Teacher ,TeacherAdmin)

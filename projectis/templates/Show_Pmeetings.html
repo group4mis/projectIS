@@ -9,7 +9,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h1>{{ user.username }} meeting :</h1>
         <br> <br>
         <ul>
-            <h1> {% for c in Meeting %}</h1>
+             {% for c in Meeting %}
             <pre> Date :{{ c.date}}   from : {{ c.teacher_meeting }}
                  <br>
                 {{ c.request_meeting}}<br>
