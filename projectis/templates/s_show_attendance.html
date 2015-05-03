@@ -3,9 +3,18 @@
 
    {% block content %}
 
+   <br> <br>
+   <br> <br>
+
+   <ul class="nav nav-tabs">
+       <li role="presentation" ><a href="{% url 's_show_snotes' %}">Special Note</a></li>
+       <li role="presentation"><a href="{% url 's_show_grade' %}">Grade</a></li>
+       <li role="presentation" class="active"><a href="{% url 's_show_attendance' %}">Attendance</a></li>
+   </ul>
    <div meeting="container">
    <br> <br>
    <br> <br>
+
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h1>{{ user.username }} attendance :</h1>
            <br> <br>
            <ul>

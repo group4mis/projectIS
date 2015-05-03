@@ -5,8 +5,8 @@ from django.conf import settings
 # Create your models here.
 
 def get_account_type(user):
-    if user.parent:
-       return "parent"
+    if user.parents:
+       return "parents"
 
     if user.student:
        return "student"
@@ -89,6 +89,8 @@ class SpecialNote(models.Model):
   special_note  = models.TextField(max_length=300)
   classes_specialNote = models.ForeignKey(Classes, blank=True, null=True)
   teacher_specialNote = models.ForeignKey(Teacher, blank=True, null=True)
+
+
   def __unicode__(self):
         return u"{},{} {}".format ( self.classes_specialNote.class_name, self.teacher_specialNote.first_name , self.teacher_specialNote.last_name)
 
@@ -109,8 +111,8 @@ class Meeting(models.Model):
   request_meeting_id = models.IntegerField(max_length=30,unique=True)
   date = models.DateField()
   request_meeting  = models.TextField(max_length=300)
-  parents_meeting = models.ForeignKey(Parents,blank=True, null=True)
+  student_meeting = models.ForeignKey(Student,blank=True, null=True)
   teacher_meeting = models.ForeignKey(Teacher,blank=True, null=True)
 
   def __unicode__(self):
-    return u"{},{} {}".format ( self. parents_meeting.account.username , self.teacher_meeting.first_name , self.teacher_meeting.last_name)
+    return u"{},{} {}".format ( self. student_meeting.parent.account.username , self.teacher_meeting.first_name , self.teacher_meeting.last_name)

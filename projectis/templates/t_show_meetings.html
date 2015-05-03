@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<br> <br>
+<br> <br>
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="{% url 't_show_meetings' %}">Meetings</a></li>
+    <li role="presentation"  ><a href="{% url 't_show_grade' %}">Grades</a></li>
+    <li role="presentation"><a href="{% url 't_show_attendance' %}">Attendance</a></li>
+
+</ul>
+
+<div meeting="container">
+<br> <br>
+<br> <br>
+<h1>{{ user.username }} meeting :</h1>
+        <br> <br>
+        <ul>
+             {% for c in Meeting %}
+            <pre>Date :{{ c.date}}   from : {{ c.student_meeting__parent}}
+                 <br>
+                {{ c.request_meeting}}<br>
+                  </pre>
+
+
+
+            {% endfor %}
+        </ul>
+    </div> <!-- /container -->
+    {% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<br> <br>
+<br> <br>
+
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="{% url 's_show_snotes' %}">Special Note</a></li>
+    <li role="presentation"><a href="{% url 's_show_grade' %}">Grade</a></li>
+    <li role="presentation"><a href="{% url 's_show_attendance' %}">Attendance</a></li>
+</ul>
+
+<div SpecialNote="container">
+<br> <br>
+<br> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h1> SpecialNote :</h1>
+        <br> <br>
+        <ul>
+             {% for c in SpecialNote %}
+            <pre> Date :{{ c.date}}   From : {{ c.teacher_specialNote }}  Class : {{c.classes_specialNote}}
+                 <br>
+                {{ c.special_note}}
+                  </pre>
+
+
+
+            {% endfor %}
+        </ul>
+    </div> <!-- /container -->
+    {% endblock %}

@@ -63,7 +63,7 @@ class GradeAdmin(admin.ModelAdmin):
 
 class MeetingAdmin(admin.ModelAdmin):
 
-    list_display = ('request_meeting_id', 'date', 'request_meeting' ,'parents_meeting' ,'teacher_meeting', )
+    list_display = ('request_meeting_id', 'date', 'request_meeting' ,'student_meeting' ,'teacher_meeting', )
     list_filter = ('date', )
     search_fields = ('date', )
 

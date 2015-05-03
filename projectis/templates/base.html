@@ -29,7 +29,7 @@
          <ul class="nav navbar-nav">
              {% if user.is_authenticated %}
            <li><a href="{% url 'home' %}">Home</a></li>
-           <li class="active"><a href="{% url 'account_email' %}">Change E-mail</a></li>
+           <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
            <li><a href="{% url 'account_change_password' %}">change_password</a></li>
            <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
 
@@ -42,7 +42,7 @@
    </nav>
 
    {% block content %}
-    
+
       {% endblock %}
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

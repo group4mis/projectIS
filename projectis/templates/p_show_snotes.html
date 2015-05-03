@@ -3,6 +3,18 @@
 
 {% block content %}
 
+<br> <br>
+<br> <br>
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="{% url 'p_show_snotes' %}">Special Note</a></li>
+    <li role="presentation"><a href="{% url 'p_show_grade' %}">Grade</a></li>
+    <li role="presentation"><a href="{% url 'p_show_attendance' %}">Attendance</a></li>
+    <li role="presentation" ><a href="{% url 'p_show_meetings' %}">Meetings</a></li>
+    <li role="presentation"><a href="{% url 'show_bnotes' %}">Behavioral Notes</a></li>
+
+</ul>
+
+
 <div SpecialNote="container">
 <br> <br>
 <br> <br>

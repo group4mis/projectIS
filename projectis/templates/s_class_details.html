@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br> <br>
+<br> <br>
+
+<ul class="nav nav-tabs">
+    <li role="presentation" ><a href="{% url 's_show_snotes' %}">Special Note</a></li>
+    <li role="presentation"><a href="{% url 's_show_grade' %}">Grade</a></li>
+    <li role="presentation"><a href="{% url 's_show_attendance' %}">Attendance</a></li>
+</ul>
+
+
+
+
+   {% endblock %}

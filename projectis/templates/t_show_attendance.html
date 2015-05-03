@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br> <br>
+<br> <br>
+<ul class="nav nav-tabs">
+    <li role="presentation" ><a href="{% url 't_show_meetings' %}">Meetings</a></li>
+    <li role="presentation"  ><a href="{% url 't_show_grade' %}">Grades</a></li>
+    <li role="presentation" class="active"><a href="{% url 't_show_attendance' %}">Attendance</a></li>
+
+</ul>
+
+
+<div meeting="container">
+<br> <br>
+<br> <br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h1>Attendance :</h1>
+        <br> <br>
+        <ul>
+<div class="table-responsive">
+     {% for c in Attendance %}
+             <table class="table table-striped">
+               <thead>
+                 <tr>
+                   <th>student</th>
+                   <th>date</th>
+                   <th>attendancs</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                   <td>{{ c.student_attendance }}</td>
+                   <td>{{ c.date}}</td>
+                   <td>{{ c.attendancs }}</td>
+                 </tr>
+                 {% endfor %}
+               </tbody>
+             </table>
+           </div>
+
+      </ul>
+  </div> <!-- /container -->
+   {% endblock %}
