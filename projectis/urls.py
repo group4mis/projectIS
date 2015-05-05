@@ -28,6 +28,7 @@ urlpatterns = patterns('',
     url(r'^s_class_details/(?P<class_id>\d+)/$','myprojectapp.views.s_class_details',name='s_class_details'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('allauth.urls')),
+    url(r'^p_request_meeting/$','myprojectapp.views.p_request_meeting',name='p_request_meeting'),
 
 
 )

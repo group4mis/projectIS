@@ -18,7 +18,15 @@ def get_account_type(user):
 
 class Teacher(models.Model):
 
-  teacher_id = models.CharField(max_length=20,unique=True)
+  def number():
+
+    no = Teacher.objects.count()
+    if no == None:
+        return 1
+    else:
+        return no + 1
+
+  teacher_id = models.IntegerField(max_length=30,unique=True,default=number)
   first_name = models.CharField(max_length=30)
   last_name = models.CharField(max_length=30)
   email = models.EmailField(max_length=30)
@@ -28,7 +36,15 @@ class Teacher(models.Model):
 
 class Student(models.Model):
 
-  student_id = models.CharField(max_length=20,unique=True)
+  def number():
+
+      no = Student.objects.count()
+      if no == None:
+          return 1
+      else:
+          return no + 1
+
+  student_id = models.IntegerField(max_length=30,unique=True,default=number)
   first_name = models.CharField(max_length=30)
   last_name = models.CharField(max_length=30)
   email = models.EmailField(max_length=30)
@@ -40,7 +56,15 @@ class Student(models.Model):
 
 class Parents(models.Model):
 
-  parents_id = models.CharField(max_length=20,unique=True)
+  def number():
+
+      no = Parents.objects.count()
+      if no == None:
+          return 1
+      else:
+          return no + 1
+
+  parents_id = models.IntegerField(max_length=30,unique=True,default=number)
   email = models.EmailField(max_length=30)
   account = models.OneToOneField(settings.AUTH_USER_MODEL, null=True, blank=True)
 
@@ -50,7 +74,15 @@ class Parents(models.Model):
 
 class Classes(models.Model):
 
-  class_id = models.CharField(max_length=20,unique=True)
+  def number():
+
+      no = Classes.objects.count()
+      if no == None:
+          return 1
+      else:
+          return no + 1
+
+  class_id = models.IntegerField(max_length=30,unique=True,default=number)
   class_name = models.CharField(max_length=30,unique=True)
   class_semester = models.CharField(max_length=30,blank=True)
   year= models.CharField(max_length=30,blank=True)
@@ -64,18 +96,35 @@ class Classes(models.Model):
     return u"{},{}".format ( self.classes_teacher.teacher_id ,self.class_name)
 
 class Attendance(models.Model):
-  attendance_id = models.CharField(max_length=30,unique=True)
+
+  def number():
+
+      no = Attendance.objects.count()
+      if no == None:
+          return 1
+      else:
+          return no + 1
+
+  attendance_id = models.IntegerField(max_length=30,unique=True,default=number)
   student_attendance = models.ForeignKey(Student, blank=True, null=True)
   classes_attendance = models.ForeignKey(Classes, blank=True, null=True)
-  date = models.DateField()
+  date = models.DateField(auto_now_add=True)
   attendancs = models.NullBooleanField()
   def __unicode__(self):
     return u"{},{} {} ,{}".format ( self.student_attendance.student_id ,self.student_attendance.first_name ,self.student_attendance.last_name , self.classes_attendance.class_name)
 
 class BehavioralNote(models.Model):
 
-  behavioral_note_id = models.IntegerField(max_length=30,unique=True)
-  date = models.DateField()
+  def number():
+
+      no = BehavioralNote.objects.count()
+      if no == None:
+          return 1
+      else:
+          return no + 1
+
+  behavioral_note_id = models.IntegerField(max_length=30,unique=True,default=number)
+  date = models.DateField(auto_now_add=True)
   behavioral_note  = models.TextField(max_length=300,)
   student_behavioralnote= models.ForeignKey(Student, blank=True, null=True)
   teacher_behavioralnote = models.ForeignKey(Teacher, blank=True, null=True)
@@ -84,8 +133,15 @@ class BehavioralNote(models.Model):
 
 class SpecialNote(models.Model):
 
-  special_note_id = models.IntegerField(max_length=30,unique=True)
-  date = models.DateField()
+  def number():
+
+     no = SpecialNote.objects.count()
+     if no == None:
+        return 1
+     else:
+        return no + 1
+  special_note_id = models.IntegerField(max_length=30,unique=True,default=number)
+  date = models.DateField(auto_now_add=True)
   special_note  = models.TextField(max_length=300)
   classes_specialNote = models.ForeignKey(Classes, blank=True, null=True)
   teacher_specialNote = models.ForeignKey(Teacher, blank=True, null=True)
@@ -96,7 +152,15 @@ class SpecialNote(models.Model):
 
 class Grade(models.Model):
 
-  grade_id = models.CharField(max_length=30,unique=True)
+  def number():
+
+       no = Grade.objects.count()
+       if no == None:
+          return 1
+       else:
+          return no + 1
+
+  grade_id = models.CharField(max_length=30,unique=True,default=number)
   type_g = models.CharField(max_length=30)
   total_points = models.CharField(max_length=30)
   grade = models.CharField(max_length=30)
@@ -106,10 +170,20 @@ class Grade(models.Model):
   def __unicode__(self):
     return u"{}, {} ,{}  {}".format ( self.classes_grade.class_name , self.student_grade.student_id ,self.student_grade.first_name ,self.student_grade.last_name )
 
+
+
 class Meeting(models.Model):
 
-  request_meeting_id = models.IntegerField(max_length=30,unique=True)
-  date = models.DateField()
+
+  def number():
+     no = Meeting.objects.count()
+     if no == None:
+         return 1
+     else:
+         return no + 1
+
+  request_meeting_id = models.IntegerField(max_length=30,unique=True,default=number)
+  date = models.DateField(auto_now_add=True)
   request_meeting  = models.TextField(max_length=300)
   student_meeting = models.ForeignKey(Student,blank=True, null=True)
   teacher_meeting = models.ForeignKey(Teacher,blank=True, null=True)

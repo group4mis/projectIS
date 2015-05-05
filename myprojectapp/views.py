@@ -1,3 +1,4 @@
+
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Classes
@@ -8,6 +9,7 @@ from .models import BehavioralNote
 from .models import Attendance
 from django.core.urlresolvers import reverse
 from django.http import Http404
+from .forms import  StudentForm, MeetingForm
 
 #Create your views here.
 
@@ -236,24 +238,58 @@ def all_classes_details(request):
 def t_class_details(request, class_id):
 
     my_class = Classes.objects.get(class_id=class_id)
+    user = request.user
+    qs = Grade.objects.filter(classes_grade__classes_teacher__account=user).all
+    return render(request, "t_show_grade.html", {
+          "user": user,
+          "Grade": qs,
+        })
 
-    return render(request, "t_class_details.html" )
 
 @login_required
 def p_class_details(request, class_id):
 
     my_class = Classes.objects.get(class_id=class_id)
+    user = request.user
+    qs = SpecialNote.objects.filter(classes_specialNote__student_classses__parent__account=user).all
+    return render(request, "p_show_snotes.html", {
+        "user": user,
+        "SpecialNote": qs,
 
-    return render(request, "p_class_details.html")
+    })
 
 
 @login_required
 def s_class_details(request, class_id):
 
     my_class = Classes.objects.get(class_id=class_id)
+    user = request.user
+    qs = SpecialNote.objects.filter(classes_specialNote__student_classses__account=user).all
+    return render(request, "s_show_snotes.html", {
+        "user": user,
+        "SpecialNote": qs,
+        })
 
-    return render(request, "s_class_details.html")
 
 
-def request_meeting(request, class_id):
-    pass
+@login_required
+def p_request_meeting(request):
+
+    if request.method == "POST":
+        form = MeetingForm (request.POST)
+        if form.is_valid():
+            form.save()
+            # the product details view function looks like this
+            # def product_details(request, pid):
+            return redirect('p_request_meeting.html' )
+
+    else:
+        form = MeetingForm(
+            initial={"student_meeting": request.user}
+        )
+
+    return render(
+        request,
+        "p_request_meeting.html",
+        {"form": form, }
+    )
