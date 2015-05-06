@@ -1,21 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
- <div class="container">
-     <br> <br>
-     <br> <br>
-  <h1>&nbsp;&nbsp;&nbsp;{{ user.username }} classes :</h1>
-     <br> <br>
-     <ul>
-         {% for c in classes %}
+<div class="container">
+    <br> <br>
+    <br> <br>
+ <h1>&nbsp;&nbsp;&nbsp;{{ user.username }} classes :</h1>
+    <br> <br>
+    <div class="list-group">
 
-             <li>
-      <a href="{% url 'p_class_details' c.class_id %}">
-             {{ c.class_name }}
-         </a>
-             </li>
-         {% endfor %}
-     </ul>
- </div> <!-- /container -->
+        {% for c in classes %}
+            <!-- <li class="list-group-item"> -->
+     <a class="list-group-item" href="{% url 'p_class_details' c.class_id %}">
+            {{ c.class_name }}
+        </a>
+            <!-- </li> -->
+        {% endfor %}
+    </div>
+</div> <!-- /container -->
+
 
    {% endblock %}

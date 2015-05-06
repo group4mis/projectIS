@@ -151,7 +151,7 @@ def show_grade(request):
 @login_required
 def t_show_grade(request):
     user = request.user
-    qs = Grade.objects.filter(classes_grade__classes_teacher__account=user).all
+    qs = Grade.objects.filter(classes_grade__classes_teacher__account=user)
     return render(request, "t_show_grade.html", {
           "user": user,
           "Grade": qs,
@@ -167,8 +167,9 @@ def s_show_grade(request):
     return render(request, "s_show_grade.html", {
           "user": user,
           "Grade": qs,
-          "total_grades": totals["total_grades"],
-        })
+           "total_grades": totals["total_grades"],
+         })
+
 @login_required
 def p_show_grade(request):
     user = request.user
