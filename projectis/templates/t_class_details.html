@@ -9,4 +9,33 @@
     <li role="presentation" ><a href="{% url 't_show_attendance' %}">Attendance</a></li>
 
 </ul>
+<br> <br>
+<br> <br>
+<div class="table-responsive">
+     {% for c in Classes %}
+             <table class="table table-striped">
+               <thead>
+                 <tr>
+                   <th>class name</th>
+                   <th>class semester</th>
+                   <th>year</th>
+                   <th>subject</th>
+                   <th>grade level</th>
+
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                   <td>{{c.class_name }}</td>
+                   <td>{{c.class_semester}}</td>
+                   <td>{{c.year }}</td>
+                   <td>{{c.subject }}</td>
+                   <td>{{c.grade_level }}</td>
+
+
+                 </tr>
+                 {% endfor %}
+               </tbody>
+             </table>
+           </div>
    {% endblock %}

@@ -14,11 +14,11 @@
 <div meeting="container">
 <br> <br>
 <br> <br>
-<h1>{{ user.username }} meeting :</h1>
+<h1>&nbsp;&nbsp;&nbsp;{{ user.username }} meeting :</h1>
         <br> <br>
         <ul>
              {% for c in Meeting %}
-            <pre>Date :{{ c.date}}   from : {{ c.student_meeting__parent}}
+            <pre>Date :{{ c.date}}   parents : {{ c.student_meeting}}
                  <br>
                 {{ c.request_meeting}}<br>
                   </pre>

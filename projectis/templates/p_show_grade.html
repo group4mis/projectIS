@@ -16,7 +16,7 @@
    <div meeting="container">
    <br> <br>
    <br> <br>
-   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h1> grade :</h1>
+   <h1> &nbsp; &nbsp; grade :</h1>
            <br> <br>
            <ul>
 
@@ -31,6 +31,8 @@
                         <th>total points</th>
                         <th>grade</th>
                         <th>total grade</th>
+
+
                       </tr>
                     </thead>
                     <tbody>
@@ -39,7 +41,9 @@
                         <td>{{ c.type_g}}</td>
                         <td>{{ c.total_points }}</td>
                         <td>{{ c.grade }}</td>
-                        <td>{{ c.total_grade }}</td>
+                        <td>{{ total_grades }}</td>
+
+
                       </tr>
                       {% endfor %}
                     </tbody>
@@ -47,5 +51,5 @@
                 </div>
 
            </ul>
-       </div> <!-- /container -->
+
        {% endblock %}

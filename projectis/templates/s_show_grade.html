@@ -14,7 +14,7 @@
    <div meeting="container">
    <br> <br>
    <br> <br>
-   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h1>{{ user.username }} grade :</h1>
+   <h1>&nbsp;&nbsp;&nbsp;{{ user.username }} grade :</h1>
            <br> <br>
            <ul>
 
@@ -37,7 +37,7 @@
                         <td>{{ c.type_g}}</td>
                         <td>{{ c.total_points }}</td>
                         <td>{{ c.grade }}</td>
-                        <td>{{ c.total_grade }}</td>
+                        <td>{{ total_grade }}</td>
                       </tr>
                       {% endfor %}
                     </tbody>

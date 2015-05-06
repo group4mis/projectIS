@@ -4,17 +4,20 @@
  <div class="container">
      <br> <br>
      <br> <br>
-  <h1>{{ user.username }} classes :</h1>
+  <h1>&nbsp;&nbsp;&nbsp;{{ user.username }} classes :</h1>
      <br> <br>
-     <ul>
-         {% for c in classes %}
-             <li>
-      <a href="{% url 't_class_details' c.class_id %}">
-             {{ c.class_name }}
-         </a>
-             </li>
-         {% endfor %}
-     </ul>
- </div> <!-- /container -->
+    
+
+ <div class="list-group">
+
+     {% for c in classes %}
+         <!-- <li class="list-group-item"> -->
+  <a class="list-group-item" href="{% url 't_class_details' c.class_id %}">
+         {{ c.class_name }}
+     </a>
+         <!-- </li> -->
+     {% endfor %}
+ </div>
+</div> <!-- /container -->
 
    {% endblock %}

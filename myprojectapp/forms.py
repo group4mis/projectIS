@@ -5,7 +5,7 @@ from .models import Meeting
 
 class MySignupForm(forms.Form):
 
-    
+
     account_type = forms.CharField(max_length=10)
 
     def signup(self, request, user):

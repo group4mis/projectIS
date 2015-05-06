@@ -10,6 +10,7 @@ from .models import Attendance
 from django.core.urlresolvers import reverse
 from django.http import Http404
 from .forms import  StudentForm, MeetingForm
+from django.db.models import  Sum
 
 #Create your views here.
 
@@ -41,7 +42,7 @@ def t_classes(request):
 @login_required
 def p_classes(request):
     user = request.user
-    qs = Classes.objects.filter(student_classses__parent__account=user).all
+    qs = Classes.objects.filter(student_classses__parent__account=user)
     return render(request, "p_classes.html", {
         "user": user,
         "classes": qs,
@@ -49,7 +50,7 @@ def p_classes(request):
 @login_required
 def s_classes(request):
     user = request.user
-    qs = Classes.objects.filter(student_classses__account=user).all
+    qs = Classes.objects.filter(student_classses__account=user)
     return render(request, "s_classes.html", {
         "user": user,
         "classes": qs,
@@ -154,24 +155,29 @@ def t_show_grade(request):
     return render(request, "t_show_grade.html", {
           "user": user,
           "Grade": qs,
+
         })
 
 
 @login_required
 def s_show_grade(request):
     user = request.user
-    qs = Grade.objects.filter(student_grade__account=user).all
+    qs = Grade.objects.filter(student_grade__account=user)
+    totals = qs.aggregate(total_grades=Sum('total_grade'))
     return render(request, "s_show_grade.html", {
           "user": user,
           "Grade": qs,
+          "total_grades": totals["total_grades"],
         })
 @login_required
 def p_show_grade(request):
     user = request.user
-    qs = Grade.objects.filter(student_grade__parent__account=user).all
+    qs = Grade.objects.filter(student_grade__parent__account=user)
+    totals = qs.aggregate(total_grades=Sum('total_grade'))
     return render(request, "p_show_grade.html", {
           "user": user,
           "Grade": qs,
+          "total_grades": totals["total_grades"],
         })
 
 @login_required
@@ -239,10 +245,10 @@ def t_class_details(request, class_id):
 
     my_class = Classes.objects.get(class_id=class_id)
     user = request.user
-    qs = Grade.objects.filter(classes_grade__classes_teacher__account=user).all
-    return render(request, "t_show_grade.html", {
+    qs = Classes.objects.filter(classes_teacher__account=user).all
+    return render(request, "t_class_details.html", {
           "user": user,
-          "Grade": qs,
+          "Classes": qs,
         })
 
 
@@ -281,7 +287,7 @@ def p_request_meeting(request):
             form.save()
             # the product details view function looks like this
             # def product_details(request, pid):
-            return redirect('p_request_meeting.html' )
+            return redirect('p_r_m' )
 
     else:
         form = MeetingForm(
@@ -289,7 +295,15 @@ def p_request_meeting(request):
         )
 
     return render(
-        request,
-        "p_request_meeting.html",
-        {"form": form, }
-    )
+    request,
+    "p_request_meeting.html",
+    {"form": form, }
+ )
+
+@login_required
+def p_r_m(request):
+    user = request.user
+    return render(request, "p_r_m.html", {
+        "user": user,
+
+        })

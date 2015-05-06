@@ -4,7 +4,7 @@ from django.contrib import admin
 # Register your models here.
 
 from .models import *
-from .forms import StudentForm
+# from myprojectapp.forms import MySignupForm
 
 class TeacherAdmin(admin.ModelAdmin):
 
@@ -24,7 +24,7 @@ class ParentsAdmin(admin.ModelAdmin):
 
 class StudentClassInline(admin.TabularInline):
     model = Classes.student_classses.through
-    form = StudentForm
+    # form = MySignupForm
     # fields = ('student_id', 'first_name', 'last_name', 'email' , 'parent')
 
 class ClassesAdmin(admin.ModelAdmin):

@@ -29,6 +29,6 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^p_request_meeting/$','myprojectapp.views.p_request_meeting',name='p_request_meeting'),
-
+    url(r'^p_r_m/$','myprojectapp.views.p_r_m',name='p_r_m'),
 
 )
