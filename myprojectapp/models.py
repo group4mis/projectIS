@@ -1,7 +1,6 @@
-
 from django.db import models
 from django.conf import settings
-
+#from django.core.mail import send_mail
 
 # Create your models here.
 
@@ -197,3 +196,6 @@ class Meeting(models.Model):
 
   def __unicode__(self):
     return u"{},{} {}".format ( self. student_meeting.parent.account.username , self.teacher_meeting.first_name , self.teacher_meeting.last_name)
+
+#send_mail('Subject here', 'Here is the message.', settings.EMAIL_HOST_USER,
+    #['to@example.com'], fail_silently=False)
