@@ -10,8 +10,12 @@ from .models import Attendance
 from django.core.urlresolvers import reverse
 from django.http import Http404
 from .forms import  StudentForm, MeetingForm
-from django.db.models import  Sum
+from django.db.models import  Sum ,Count
 #from django.http import HttpResponse, HttpResponseRedirect
+
+
+
+
 #Create your views here.
 
 @login_required
@@ -28,6 +32,7 @@ def all_classes(request):
         return redirect("s_classes")
 
     raise Http404
+
 
 @login_required
 def t_classes(request):
@@ -246,8 +251,9 @@ def t_class_details(request, class_id):
 
     my_class = Classes.objects.get(class_id=class_id)
     user = request.user
-    qs = Classes.objects.filter(classes_teacher__account=user).all
+    countstudent = qs.aggregate(student_classses=Count('student_classses'))
     return render(request, "t_class_details.html", {
+          "student_classses": countstudent ["student_classses"],
           "user": user,
           "Classes": qs,
         })
@@ -282,6 +288,7 @@ def s_class_details(request, class_id):
 @login_required
 def p_request_meeting(request):
 
+    user = request.user
     if request.method == "POST":
         form = MeetingForm (request.POST)
         if form.is_valid():
@@ -292,13 +299,15 @@ def p_request_meeting(request):
 
     else:
         form = MeetingForm(
-            initial={"student_meeting": request.user}
+            initial={"student_meeting":user}
         )
 
     return render(
     request,
     "p_request_meeting.html",
-    {"form": form, }
+    {"user": user,
+     "form": form,
+    }
  )
 
 @login_required
@@ -309,17 +318,17 @@ def p_r_m(request):
 
         })
 
-#def send_email(request):
-    #subject = request.POST.get('subject', '')
-    #message = request.POST.get('message', '')
-    #from_email = request.POST.get('from_email', '')
-    #if subject and message and from_email:
-    #    try:
-    #        send_mail(subject, message, from_email, ['admin@example.com'])
-    #    except BadHeaderError:
-    #        RETURN HttpResponse('Invalid header found.')
-    #    return HttpResponseRedirect('/contact/thanks/')
-    #else:
-        # In reality we'd use a form class
-        # to get proper validation errors.
-    #    return HttpResponse('Make sure all fields are entered and valid.')        
+# def send_email(request):
+#     subject = request.POST.get('subject', '')
+#     message = request.POST.get('message', '')
+#     from_email = request.POST.get('from_email', '')
+#     if subject and message and from_email:
+#         try:
+#             send_email(subject, message, from_email, ['admin@example.com'])
+#         except BadHeaderError:
+#             RETURN HttpResponse('Invalid header found.')
+#         return HttpResponseRedirect('/contact/thanks/')
+#     else:
+#          In reality we'd use a form class
+#          to get proper validation errors.
+#        return HttpResponse('Make sure all fields are entered and valid.')

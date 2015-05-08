@@ -29,6 +29,8 @@
                         <th>total points</th>
                         <th>grade</th>
                         <th>total grade</th>
+                        <th>deducted points</th>
+                        
                       </tr>
                     </thead>
                     <tbody>
@@ -38,8 +40,9 @@
                         <td>{{ c.total_points }}</td>
                         <td>{{ c.grade }}</td>
                         <td>{{ total_grades }}</td>
+                        <td>{{ c.deducted_points_grade }}</td>
 
-                        
+
                       </tr>
                       {% endfor %}
                     </tbody>

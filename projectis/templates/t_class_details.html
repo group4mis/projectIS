@@ -13,6 +13,8 @@
 <br> <br>
 <div class="table-responsive">
      {% for c in Classes %}
+     <h1>&nbsp;&nbsp;&nbsp;{{ user.username }} classes Details :</h1>
+     <br> <br>
              <table class="table table-striped">
                <thead>
                  <tr>
@@ -34,8 +36,10 @@
 
 
                  </tr>
-                 {% endfor %}
+
                </tbody>
              </table>
+             <h3>&nbsp;&nbsp;&nbsp;Total number of student :{{ total_grades }} </h3>
+             {% endfor %}
            </div>
    {% endblock %}

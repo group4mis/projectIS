@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
-#from django.core.mail import send_mail
+
+#from django.core.email import send_mail
 
 # Create your models here.
 
@@ -52,7 +53,7 @@ class Student(models.Model):
   parent = models.ForeignKey('Parents', blank=True)
 
   def __unicode__(self):
-    return u"{},{},{}".format(self.account.username , self.student_id ,self.parent.account.username )
+    return u"{},{}".format(self.account.username ,self.parent.account.username )
 
 class Parents(models.Model):
 
@@ -70,7 +71,7 @@ class Parents(models.Model):
 
 
   def __unicode__(self):
-    return u"{}, {}".format(self.account.username , self.parents_id ,)
+    return u"{}, {}".format(self.account.username,)
 
 class Classes(models.Model):
 
@@ -93,7 +94,7 @@ class Classes(models.Model):
 
 
   def __unicode__(self):
-    return u"{},{}".format ( self.classes_teacher.teacher_id ,self.class_name)
+    return u"{},{}".format ( self.classes_teacher.account.username ,self.class_name)
 
 class Attendance(models.Model):
 
@@ -111,7 +112,7 @@ class Attendance(models.Model):
   date = models.DateField(auto_now_add=True)
   attendancs = models.NullBooleanField()
   def __unicode__(self):
-    return u"{},{} {} ,{}".format ( self.student_attendance.student_id ,self.student_attendance.first_name ,self.student_attendance.last_name , self.classes_attendance.class_name)
+    return u"{} {} ,{}".format ( self.student_attendance.first_name ,self.student_attendance.last_name , self.classes_attendance.class_name)
 
 class BehavioralNote(models.Model):
 
@@ -128,8 +129,9 @@ class BehavioralNote(models.Model):
   behavioral_note  = models.TextField(max_length=300,)
   student_behavioralnote= models.ForeignKey(Student, blank=True, null=True)
   teacher_behavioralnote = models.ForeignKey(Teacher, blank=True, null=True)
+  deducted_points = models.CharField(max_length=30 ,blank= False, null=False)
   def __unicode__(self):
-    return u"{},{} {}".format ( self.student_behavioralnote.parent, self.teacher_behavioralnote.first_name , self.teacher_behavioralnote.last_name)
+    return u"{} {} will be deducted ({})".format (self.student_behavioralnote.first_name ,self.student_behavioralnote.last_name, self.deducted_points)
 
 class SpecialNote(models.Model):
 
@@ -168,13 +170,11 @@ class Grade(models.Model):
   total_grade = models.CharField (max_length=30)
   student_grade = models.ForeignKey(Student, blank=True, null=True)
   classes_grade = models.ForeignKey(Classes, blank=True, null=True)
+  deducted_points_grade = models.ForeignKey(BehavioralNote, blank=False, null=False ,max_length=30)
 
-
-  #def grade_sum(self):
-    #return self.objects.aggregate(total_grade=Sum('grade'))['total_grade']
 
   def __unicode__(self):
-    return u"{}, {} ,{}  {}".format ( self.classes_grade.class_name , self.student_grade.student_id ,self.student_grade.first_name ,self.student_grade.last_name )
+    return u"{} {}".format (self.student_grade.first_name ,self.student_grade.last_name )
 
 
 
@@ -197,5 +197,6 @@ class Meeting(models.Model):
   def __unicode__(self):
     return u"{},{} {}".format ( self. student_meeting.parent.account.username , self.teacher_meeting.first_name , self.teacher_meeting.last_name)
 
-#send_mail('Subject here', 'Here is the message.', settings.EMAIL_HOST_USER,
+
+#send_email('Subject here', 'Here is the message.', settings.EMAIL_HOST_USER,
     #['to@example.com'], fail_silently=False)

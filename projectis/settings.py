@@ -113,3 +113,5 @@ STATIC_URL = '/static/'
 
 
 ACCOUNT_SIGNUP_FORM_CLASS='myprojectapp.forms.MySignupForm'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
