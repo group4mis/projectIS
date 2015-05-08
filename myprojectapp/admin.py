@@ -1,5 +1,5 @@
 from django.contrib import admin
-
+#from more_with_admin.examples import models
 
 # Register your models here.
 
@@ -67,6 +67,17 @@ class MeetingAdmin(admin.ModelAdmin):
     list_filter = ('date', )
     search_fields = ('date', )
 
+#class DocumentAdmin(admin.ModelAdmin):
+
+    #def queryset(self, request):
+    #    qs = super(DocumentAdmin, self).queryset(request)
+
+        # If super-user, show all comments
+    #    if request.user.is_superuser:
+    #        return qs
+
+    #    return qs.filter(added_by=request.user)
+
 
 admin.site.register(Teacher ,TeacherAdmin)
 admin.site.register(Student ,StudentAdmin)
@@ -77,3 +88,4 @@ admin.site.register(BehavioralNote ,BehavioralNoteAdmin)
 admin.site.register(SpecialNote ,SpecialNoteAdmin)
 admin.site.register(Grade ,GradeAdmin)
 admin.site.register(Meeting ,MeetingAdmin)
+#admin.site.register(Document,DocumentAdmin)
