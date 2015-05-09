@@ -48,6 +48,13 @@ class MyNewUserForm(forms.ModelForm):
     error_messages = {
         'password_mismatch': _("The two password fields didn't match."),
     }
+
+    # ACC_TYPE_CHOICE = (
+    #     ("teacher", "teacher"),
+    #     ("parents", "parents"),
+    #     ("student", "student"),
+     #choices=ACC_TYPE_CHOICE
+
     account_type = forms.CharField(max_length=10)
     password1 = forms.CharField(label=_("Password"),
                                 widget=forms.PasswordInput)

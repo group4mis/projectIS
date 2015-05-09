@@ -207,9 +207,11 @@ def show_attendance(request):
 def s_show_attendance(request):
     user = request.user
     qs = Attendance.objects.filter(student_attendance__account=user).all
+    #totalattendance = qs.aggregate(attendancs=Count('attendancs'))
     return render(request, "s_show_attendance.html", {
           "user": user,
           "Attendance": qs,
+          #"attendancs": totalattendance["attendancs"],
         })
 
 @login_required
