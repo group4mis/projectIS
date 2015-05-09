@@ -43,7 +43,7 @@ class Teacher(models.Model):
 
 class Student(models.Model):
 
-    def number():
+    def next_student_id():
 
         no = Student.objects.count()
         if no == None:
@@ -52,13 +52,13 @@ class Student(models.Model):
             return no + 1
 
     student_id = models.IntegerField(
-        max_length=30, unique=True, default=number, editable=False)
+        max_length=30, unique=True, default=next_student_id, editable=False)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     email = models.EmailField(max_length=30)
     account = models.OneToOneField(
         settings.AUTH_USER_MODEL, null=True, blank=True)
-    parent = models.ForeignKey('Parents', blank=True)
+    parent = models.ForeignKey('Parents',null=True)
 
     def __unicode__(self):
         return u"{},{}".format(self.account.username, self.parent.account.username)
@@ -66,7 +66,7 @@ class Student(models.Model):
 
 class Parents(models.Model):
 
-    def number():
+    def next_parents_id():
 
         no = Parents.objects.count()
         if no == None:
@@ -75,13 +75,13 @@ class Parents(models.Model):
             return no + 1
 
     parents_id = models.IntegerField(
-        max_length=30, unique=True, default=number, editable=False)
+        max_length=30, unique=True, default=next_parents_id, editable=False)
     email = models.EmailField(max_length=30)
     account = models.OneToOneField(
         settings.AUTH_USER_MODEL, null=True, blank=True)
 
     def __unicode__(self):
-        return u"{}, {}".format(self.account.username,)
+        return u"{},{}".format(self.parents_id , self.account.username)
 
 
 class Classes(models.Model):
@@ -214,7 +214,3 @@ class Meeting(models.Model):
 
     def __unicode__(self):
         return u"{},{} {}".format(self. student_meeting.parent.account.username, self.teacher_meeting.first_name, self.teacher_meeting.last_name)
-
-
-# send_email('Subject here', 'Here is the message.', settings.EMAIL_HOST_USER,
-        #['to@example.com'], fail_silently=False)

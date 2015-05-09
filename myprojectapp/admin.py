@@ -30,6 +30,7 @@ class MyNewUserAdmin(admin.ModelAdmin):
         # form is where you will find your data
         # form.cleaned_data
         print("cleaned data {}".format(form.cleaned_data))
+
         obj.save()
 
         if form.cleaned_data["account_type"] == "teacher":
@@ -37,6 +38,25 @@ class MyNewUserAdmin(admin.ModelAdmin):
             t = Teacher.objects.create(
                 first_name=form.cleaned_data["first_name"],
                 last_name=form.cleaned_data["last_name"],
+                email=form.cleaned_data["email"],
+                account=obj,
+            )
+
+        elif form.cleaned_data["account_type"] == "student":
+
+            s = Student.objects.create(
+                first_name=form.cleaned_data["first_name"],
+                last_name=form.cleaned_data["last_name"],
+                email=form.cleaned_data["email"],
+                account=obj,
+                parent=form.cleaned_data["Parents"],
+
+            )
+
+
+        elif form.cleaned_data["account_type"] == "parents":
+
+            p = Parents.objects.create(
                 email=form.cleaned_data["email"],
                 account=obj,
             )
@@ -68,7 +88,7 @@ class ParentsAdmin(admin.ModelAdmin):
 class StudentClassInline(admin.TabularInline):
     model = Classes.student_classses.through
     # form = MySignupForm
-    # fields = ('student_id', 'first_name', 'last_name', 'email' , 'parent')
+   # fields = ('student_id', 'first_name', 'last_name', 'email' , 'parent')
 
 
 class ClassesAdmin(admin.ModelAdmin):

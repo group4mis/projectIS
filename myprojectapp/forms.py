@@ -14,7 +14,6 @@ class MySignupForm(forms.Form):
     in the registration form. You can find it in cleaned_data
     Then it is up to you to do something to make the user seem like
     a teacher or a student or a parent.
-
     see in the code:
     """
 
@@ -30,9 +29,39 @@ class MySignupForm(forms.Form):
 
         # this will not work, because user.account_type
         # was not defined
-        user.account_type = self.cleaned_data['account_type']
+
         # when you save it will not save this info to the DB
         user.save()
+        if form.cleaned_data["account_type"] == "teacher":
+
+            t = Teacher.user.create(
+                user.first_name=self.cleaned_data["first_name"],
+                user.last_name=self.cleaned_data["last_name"],
+                user.email=self.cleaned_data["email"],
+                user.account=user,
+                user.account_type = self.cleaned_data['account_type'],
+            )
+
+        elif form.cleaned_data["account_type"] == "student":
+
+            s = Student.user.create(
+                user.first_name=self.cleaned_data["first_name"],
+                user.last_name=self.cleaned_data["last_name"],
+                user.email=self.cleaned_data["email"],
+                user.account=user,
+                user.parent=self.cleaned_data["Parents"],
+                user.account_type = self.cleaned_data['account_type'],
+
+            )
+
+
+        elif form.cleaned_data["account_type"] == "parents":
+
+            p = Parents.user.create(
+                user.email=self.cleaned_data["email"],
+                user.account=user,
+                user.account_type = self.cleaned_data['account_type'],
+            )
 
         # instead you should create a link a Teacher, Parent, or Student
         # object because on the value found in
@@ -59,7 +88,7 @@ class MyNewUserForm(forms.ModelForm):
         ("teacher", "A Teacher"),
         ("parents", "A Parent"),
         ("student", "A Student"),
-        ("na", "N/A"),
+
     )
 
     account_type = forms.ChoiceField(choices=ACC_TYPE_CHOICE)
@@ -93,8 +122,7 @@ class MyNewUserForm(forms.ModelForm):
 
             elif hasattr(user, "student"):
                 initial['account_type'] = 'student'
-            else:
-                initial['account_type'] = 'na'
+
 
             print("initial is {}".format(initial))
             kwargs['initial'] = initial
