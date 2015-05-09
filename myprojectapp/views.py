@@ -292,6 +292,7 @@ def s_class_details(request, class_id):
 def p_request_meeting(request):
 
     user = request.user
+
     if request.method == "POST":
         form = MeetingForm (request.POST)
         if form.is_valid():
@@ -301,10 +302,12 @@ def p_request_meeting(request):
             return redirect('p_r_m' )
 
     else:
+
         form = MeetingForm(
-            initial={"student_meeting":user}
+            # initial={"student_meeting":user}
         )
         form.fields["student_meeting"].queryset = Student.objects.filter(parent__account=user)
+
 
     return render(
     request,
