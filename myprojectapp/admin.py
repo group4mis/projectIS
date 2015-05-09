@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
 
 #from more_with_admin.examples import models
->
 
 # Register your models here.
 
@@ -12,6 +11,7 @@ from myprojectapp.forms import MyNewUserForm
 
 
 class MyNewUserAdmin(admin.ModelAdmin):
+
     """ We inherite from the Current user and make
     some changes to it.
 
@@ -30,9 +30,19 @@ class MyNewUserAdmin(admin.ModelAdmin):
         # form is where you will find your data
         # form.cleaned_data
         print("cleaned data {}".format(form.cleaned_data))
+        obj.save()
+
+        if form.cleaned_data["account_type"] == "teacher":
+
+            t = Teacher.objects.create(
+                first_name=form.cleaned_data["first_name"],
+                last_name=form.cleaned_data["last_name"],
+                email=form.cleaned_data["email"],
+                account=obj,
+            )
 
         # this must always be called at the end
-        obj.save()
+
 
 
 class TeacherAdmin(admin.ModelAdmin):
@@ -112,19 +122,18 @@ class MeetingAdmin(admin.ModelAdmin):
     list_filter = ('date', )
     search_fields = ('date', )
 
-#class DocumentAdmin(admin.ModelAdmin):
+# class DocumentAdmin(admin.ModelAdmin):
 
-    #def queryset(self, request):
+    # def queryset(self, request):
     #    qs = super(DocumentAdmin, self).queryset(request)
 
-        # If super-user, show all comments
+    # If super-user, show all comments
     #    if request.user.is_superuser:
     #        return qs
 
     #    return qs.filter(added_by=request.user)
 
 
-<<<<<<< HEAD
 admin.site.register(Teacher, TeacherAdmin)
 admin.site.register(Student, StudentAdmin)
 admin.site.register(Parents, ParentsAdmin)
@@ -139,15 +148,3 @@ admin.site.register(Meeting, MeetingAdmin)
 admin.site.unregister(User)
 # now let us register the new one we created
 admin.site.register(User, MyNewUserAdmin)
-=======
-admin.site.register(Teacher ,TeacherAdmin)
-admin.site.register(Student ,StudentAdmin)
-admin.site.register(Parents,ParentsAdmin)
-admin.site.register(Classes ,ClassesAdmin)
-admin.site.register(Attendance ,AttendanceAdmin)
-admin.site.register(BehavioralNote ,BehavioralNoteAdmin)
-admin.site.register(SpecialNote ,SpecialNoteAdmin)
-admin.site.register(Grade ,GradeAdmin)
-admin.site.register(Meeting ,MeetingAdmin)
-#admin.site.register(Document,DocumentAdmin)
->>>>>>> origin/master

@@ -18,7 +18,13 @@ class MySignupForm(forms.Form):
     see in the code:
     """
 
-    account_type = forms.CharField(max_length=10)
+    ACC_TYPE_CHOICE = (
+        ("teacher", "A Teacher"),
+        ("parents", "A Parent"),
+        ("student", "A Student"),
+    )
+
+    account_type = forms.ChoiceField(choices=ACC_TYPE_CHOICE)
 
     def signup(self, request, user):
 
@@ -49,13 +55,14 @@ class MyNewUserForm(forms.ModelForm):
         'password_mismatch': _("The two password fields didn't match."),
     }
 
-    # ACC_TYPE_CHOICE = (
-    #     ("teacher", "teacher"),
-    #     ("parents", "parents"),
-    #     ("student", "student"),
-     #choices=ACC_TYPE_CHOICE
+    ACC_TYPE_CHOICE = (
+        ("teacher", "A Teacher"),
+        ("parents", "A Parent"),
+        ("student", "A Student"),
+        ("na", "N/A"),
+    )
 
-    account_type = forms.CharField(max_length=10)
+    account_type = forms.ChoiceField(choices=ACC_TYPE_CHOICE)
     password1 = forms.CharField(label=_("Password"),
                                 widget=forms.PasswordInput)
     password2 = forms.CharField(
@@ -77,14 +84,19 @@ class MyNewUserForm(forms.ModelForm):
         initial = kwargs.get('initial', {})
         if 'instance' in kwargs:
             user = kwargs['instance']
+
             if hasattr(user, "teacher"):
                 initial['account_type'] = 'teacher'
 
-            if hasattr(user, "parents"):
+            elif hasattr(user, "parents"):
                 initial['account_type'] = 'parents'
 
-            if hasattr(user, "student"):
+            elif hasattr(user, "student"):
                 initial['account_type'] = 'student'
+            else:
+                initial['account_type'] = 'na'
+
+            print("initial is {}".format(initial))
             kwargs['initial'] = initial
         super(MyNewUserForm, self).__init__(*args, **kwargs)
 
