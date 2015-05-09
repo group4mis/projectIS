@@ -7,6 +7,7 @@ from .models import Meeting
 from .models import SpecialNote
 from .models import BehavioralNote
 from .models import Attendance
+from .models import Student
 from django.core.urlresolvers import reverse
 from django.http import Http404
 from .forms import  StudentForm, MeetingForm
@@ -303,6 +304,7 @@ def p_request_meeting(request):
         form = MeetingForm(
             initial={"student_meeting":user}
         )
+        form.fields["student_meeting"].queryset = Student.objects.filter(parent__account=user)
 
     return render(
     request,
