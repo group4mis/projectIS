@@ -55,8 +55,6 @@ INSTALLED_APPS = (
     'port: EMAIL_PORT',
     'username: EMAIL_HOST_USER',
     'password: EMAIL_HOST_PASSWORD',
-    #'django_print_settings',
-
 
 )
 
@@ -126,7 +124,4 @@ STATIC_URL = '/static/'
 ACCOUNT_SIGNUP_FORM_CLASS='myprojectapp.forms.MySignupForm'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-<<<<<<< HEAD
-=======
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend',
->>>>>>> origin/master

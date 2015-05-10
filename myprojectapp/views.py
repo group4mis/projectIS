@@ -10,7 +10,7 @@ from .models import BehavioralNote
 from .models import Attendance
 from django.core.urlresolvers import reverse
 from django.http import Http404
-from .forms import  MeetingForm
+from .forms import  StudentForm, MeetingForm
 from django.db.models import  Sum ,Count
 from django.core.mail import send_mail
 from django.conf import settings
@@ -303,6 +303,12 @@ def p_request_meeting(request):
         form = MeetingForm (request.POST)
         if form.is_valid():
             form.save()
+            subject = 'A new meeting request!'
+            message = 'A new meeting request has been submited, check out student portfolio for more details!'
+            from_email = EMAIL_HOST_USER
+            to_list = [save_it.email, setting.EMAIL_HOST_USER]
+
+            send_mail(subject, message, from_email, to_list, fail_silently=False)
             # the product details view function looks like this
             # def product_details(request, pid):
             return redirect('p_r_m' )
