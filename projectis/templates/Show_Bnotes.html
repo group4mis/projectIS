@@ -4,7 +4,7 @@
 {% block content %}
 
 <br> <br>
-<br> <br>
+
 <ul class="nav nav-tabs">
     <li role="presentation" ><a href="{% url 'p_show_snotes' %}">Special Note</a></li>
     <li role="presentation"><a href="{% url 'p_show_grade' %}">Grade</a></li>
@@ -18,12 +18,12 @@
 
 <div BehavioralNote="container">
 <br> <br>
-<br> <br>
+
 <h1>&nbsp;&nbsp;&nbsp; BehavioralNote :</h1>
         <br> <br>
         <ul>
              {% for c in BehavioralNote %}
-            <pre> Date :{{ c.date}}   From : {{ c.teacher_behavioralnote }}  
+            <pre> Date :{{ c.date}}   From : {{ c.teacher_behavioralnote }}
                  <br>
                 {{ c.behavioral_note}}<br>
                   </pre>

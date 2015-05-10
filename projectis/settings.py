@@ -23,7 +23,6 @@ STATIC_ROOT = PROJECT_DIR.child("static")
 STATICFILES_DIRS = (PROJECT_DIR.child("assets"), )
 TEMPLATE_DIRS = (PROJECT_DIR.child("templates"), )
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
@@ -35,7 +34,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -99,6 +98,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # 'USER': 'root',
+        # 'PASSWORD': 'passwd',
+        # 'HOST': '',
+        # 'PORT': '',
     }
 }
 
