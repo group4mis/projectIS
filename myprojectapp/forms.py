@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.core.mail import send_mail
+from django.conf import settings
 
 
 class MySignupForm(forms.Form):
@@ -37,17 +38,15 @@ class MySignupForm(forms.Form):
         user.set_password = self.cleaned_data['password1']
         user.email = self.cleaned_data['email']
         user.save()
-<<<<<<< Updated upstream
 
         subject = 'Welcome to Student Portfolio!'
         message = 'Thanks for registering with us! check out our website to know more about our services.'
-        from_email = EMAIL_HOST_USER
-        to_list = [save_it.email, setting.EMAIL_HOST_USER]
+        from_email ='student.portfolio.news@gmail.com'
+        to_list = [user.email]
 
         send_mail(subject, message, from_email, to_list, fail_silently=False)
 
-=======
->>>>>>> Stashed changes
+
         return redirect('allauth.urls')
         # when you save it will not save this info to the DB
 
@@ -133,6 +132,12 @@ class MyNewUserForm(forms.ModelForm):
         user.set_password(self.cleaned_data["password1"])
         if commit:
             user.save()
+            subject = 'Welcome to Student Portfolio!'
+            message = 'Thanks for registering with us! check out our website to know more about our services.'
+            from_email = 'student.portfolio.news@gmail.com'
+            to_list = [user.email]
+            send_mail(subject, message, from_email, to_list, fail_silently=False)
+
         return user
 
 

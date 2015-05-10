@@ -303,18 +303,13 @@ def p_request_meeting(request):
         form = MeetingForm (request.POST)
         if form.is_valid():
             form.save()
-<<<<<<< Updated upstream
+
             subject = 'A new meeting request!'
             message = 'A new meeting request has been submited, check out student portfolio for more details!'
-            from_email = EMAIL_HOST_USER
-            to_list = [save_it.email, setting.EMAIL_HOST_USER]
+            from_email = 'student.portfolio.news@gmail.com'
+            to_list = [user.email]
 
             send_mail(subject, message, from_email, to_list, fail_silently=False)
-            # the product details view function looks like this
-            # def product_details(request, pid):
-=======
-        
->>>>>>> Stashed changes
             return redirect('p_r_m' )
 
     else:
@@ -337,19 +332,3 @@ def p_r_m(request):
         "user": user,
 
         })
-
-
-# def send_email(request):
-#     subject = request.POST.get('subject', '')
-#     message = request.POST.get('message', '')
-#     from_email = request.POST.get('from_email', '')
-#     if subject and message and from_email:
-#         try:
-#             send_email(subject, message, from_email, ['admin@example.com'])
-#         except BadHeaderError:
-#             RETURN HttpResponse('Invalid header found.')
-#         return HttpResponseRedirect('/contact/thanks/')
-#     else:
-#          In reality we'd use a form class
-#          to get proper validation errors.
-#        return HttpResponse('Make sure all fields are entered and valid.')
