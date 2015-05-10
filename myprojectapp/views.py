@@ -303,6 +303,7 @@ def p_request_meeting(request):
         form = MeetingForm (request.POST)
         if form.is_valid():
             form.save()
+<<<<<<< Updated upstream
             subject = 'A new meeting request!'
             message = 'A new meeting request has been submited, check out student portfolio for more details!'
             from_email = EMAIL_HOST_USER
@@ -311,12 +312,13 @@ def p_request_meeting(request):
             send_mail(subject, message, from_email, to_list, fail_silently=False)
             # the product details view function looks like this
             # def product_details(request, pid):
+=======
+        
+>>>>>>> Stashed changes
             return redirect('p_r_m' )
 
     else:
-        # form = MeetingForm(
-        #    initial={"student_meeting":user}
-         # )
+
          form = MeetingForm()
          form.fields["student_meeting"].queryset = Student.objects.filter(parent__account=user)
         #  form.fields["teacher_meeting"].queryset = Classes.objects.filter(class_id=class_id)

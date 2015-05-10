@@ -6,12 +6,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 # for gmail or google apps
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'student.portfolio.news@gmail.com'
-EMAIL_HOST_PASSWORD = 'studentportfolio123'
-EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'student.portfolio.news@gmail.com'
+# EMAIL_HOST_PASSWORD = 'studentportfolio123'
+# EMAIL_PORT = 587
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -51,10 +52,19 @@ INSTALLED_APPS = (
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+<<<<<<< Updated upstream
     'host: EMAIL_HOST',
     'port: EMAIL_PORT',
     'username: EMAIL_HOST_USER',
     'password: EMAIL_HOST_PASSWORD',
+=======
+    # 'host: EMAIL_HOST',
+    # 'port: EMAIL_PORT',
+    # 'username: EMAIL_HOST_USER',
+    # 'password: EMAIL_HOST_PASSWORD',
+    #'django_print_settings',
+
+>>>>>>> Stashed changes
 
 )
 
@@ -124,4 +134,7 @@ STATIC_URL = '/static/'
 ACCOUNT_SIGNUP_FORM_CLASS='myprojectapp.forms.MySignupForm'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+<<<<<<< Updated upstream
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend',
+=======
+>>>>>>> Stashed changes

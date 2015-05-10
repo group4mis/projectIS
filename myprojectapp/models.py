@@ -58,7 +58,7 @@ class Student(models.Model):
     email = models.EmailField(max_length=30)
     account = models.OneToOneField(
         settings.AUTH_USER_MODEL, null=True, blank=True)
-    parent = models.ForeignKey('Parents',blank=True)
+    parent = models.ForeignKey('Parents',blank=False)
 
     def __unicode__(self):
         return u"{},{}".format(self.account.username, self.parent.account.username)

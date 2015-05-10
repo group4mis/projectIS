@@ -31,11 +31,13 @@ class MySignupForm(forms.Form):
         # this will not work, because user.account_type
         # was not defined
 
+
         user.account_type = self.cleaned_data['account_type']
         user.username = self.cleaned_data['username']
         user.set_password = self.cleaned_data['password1']
         user.email = self.cleaned_data['email']
         user.save()
+<<<<<<< Updated upstream
 
         subject = 'Welcome to Student Portfolio!'
         message = 'Thanks for registering with us! check out our website to know more about our services.'
@@ -44,6 +46,8 @@ class MySignupForm(forms.Form):
 
         send_mail(subject, message, from_email, to_list, fail_silently=False)
 
+=======
+>>>>>>> Stashed changes
         return redirect('allauth.urls')
         # when you save it will not save this info to the DB
 

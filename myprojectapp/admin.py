@@ -46,15 +46,15 @@ class MyNewUserAdmin(admin.ModelAdmin):
                 account=obj,
             )
 
-        if form.cleaned_data["account_type"] == "student":
-
-            t = Student.objects.create(
-                first_name=form.cleaned_data["first_name"],
-                last_name=form.cleaned_data["last_name"],
-                email=form.cleaned_data["email"],
-                account=obj,
-                parent=form.cleaned_data["parents"],
-            )
+        # if form.cleaned_data["account_type"] == "student":
+        #
+        #     t = Student.objects.create(
+        #         first_name=form.cleaned_data["first_name"],
+        #         last_name=form.cleaned_data["last_name"],
+        #         email=form.cleaned_data["email"],
+        #         account=obj,
+        #         # parent=form.cleaned_data["parents"],
+        #     )
 
         # this must always be called at the end
 
