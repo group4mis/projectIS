@@ -1,13 +1,13 @@
-
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Classes
 from .models import Grade
 from .models import Meeting
+from .models import Student
+from .models import Teacher
 from .models import SpecialNote
 from .models import BehavioralNote
 from .models import Attendance
-from .models import Student
 from django.core.urlresolvers import reverse
 from django.http import Http404
 from .forms import  StudentForm, MeetingForm
@@ -38,7 +38,6 @@ def all_classes(request):
 @login_required
 def t_classes(request):
     user = request.user
-
     qs = Classes.objects.filter(classes_teacher__account=user)
     return render(request, "t_classes.html", {
         "user": user,
@@ -207,21 +206,25 @@ def show_attendance(request):
 @login_required
 def s_show_attendance(request):
     user = request.user
-    qs = Attendance.objects.filter(student_attendance__account=user).all
-    #totalattendance = qs.aggregate(attendancs=Count('attendancs'))
+    qs = Attendance.objects.filter(student_attendance__account=user)
+    numderofabsent = qs.aggregate(numder_of_absent=Sum('numder_of_absent'))
     return render(request, "s_show_attendance.html", {
           "user": user,
           "Attendance": qs,
-          #"attendancs": totalattendance["attendancs"],
+          "numder_of_absent": numderofabsent["numder_of_absent"],
+
+
         })
 
 @login_required
 def p_show_attendance(request):
     user = request.user
-    qs = Attendance.objects.filter(student_attendance__parent__account=user).all
+    qs = Attendance.objects.filter(student_attendance__parent__account=user)
+    numderofabsent = qs.aggregate(numder_of_absent=Sum('numder_of_absent'))
     return render(request, "p_show_attendance.html", {
           "user": user,
           "Attendance": qs,
+          "numder_of_absent": numderofabsent["numder_of_absent"],
         })
 
 @login_required
@@ -254,11 +257,13 @@ def t_class_details(request, class_id):
 
     my_class = Classes.objects.get(class_id=class_id)
     user = request.user
-    countstudent = qs.aggregate(student_classses=Count('student_classses'))
-    return render(request, "t_class_details.html", {
-          "student_classses": countstudent ["student_classses"],
+    qs = Classes.objects.filter(classes_teacher__account=user).all
+    return render(request, "t_class_details.html",{
           "user": user,
           "Classes": qs,
+
+
+
         })
 
 
@@ -292,7 +297,6 @@ def s_class_details(request, class_id):
 def p_request_meeting(request):
 
     user = request.user
-
     if request.method == "POST":
         form = MeetingForm (request.POST)
         if form.is_valid():
@@ -302,13 +306,12 @@ def p_request_meeting(request):
             return redirect('p_r_m' )
 
     else:
-
-        form = MeetingForm(
-            # initial={"student_meeting":user}
-        )
-        form.fields["student_meeting"].queryset = Student.objects.filter(parent__account=user)
-
-
+        # form = MeetingForm(
+        #    initial={"student_meeting":user}
+         # )
+         form = MeetingForm()
+         form.fields["student_meeting"].queryset = Student.objects.filter(parent__account=user)
+        #  form.fields["teacher_meeting"].queryset = Classes.objects.filter(class_id=class_id)
     return render(
     request,
     "p_request_meeting.html",

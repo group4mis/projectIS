@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    #'django_print_settings',
 
 )
 
@@ -113,5 +114,3 @@ STATIC_URL = '/static/'
 
 
 ACCOUNT_SIGNUP_FORM_CLASS='myprojectapp.forms.MySignupForm'
-
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

@@ -58,7 +58,7 @@ class Student(models.Model):
     email = models.EmailField(max_length=30)
     account = models.OneToOneField(
         settings.AUTH_USER_MODEL, null=True, blank=True)
-    parent = models.ForeignKey('Parents',null=True)
+    parent = models.ForeignKey('Parents',blank=True)
 
     def __unicode__(self):
         return u"{},{}".format(self.account.username, self.parent.account.username)
@@ -105,12 +105,12 @@ class Classes(models.Model):
     student_classses = models.ManyToManyField('Student', blank=True)
 
     def __unicode__(self):
-        return u"{},{}".format(self.classes_teacher.account.username, self.class_name)
+        return u"{},{},{}".format(self.classes_teacher.account.username, self.class_name,self.class_id)
 
 
 class Attendance(models.Model):
 
-    def number():
+    def id_number():
 
         no = Attendance.objects.count()
         if no == None:
@@ -118,12 +118,22 @@ class Attendance(models.Model):
         else:
             return no + 1
 
+    # def no_of_absent():
+    #
+    #     if Attendance == "NO":
+    #        number_of_absent = Attendance.objects.count()
+    #        if number_of_absent == None:
+    #             return 0
+    #        else:
+    #             return number_of_absent + 1
+
     attendance_id = models.IntegerField(
-        max_length=30, unique=True, default=number, editable=False)
+        max_length=30, unique=True, default=id_number, editable=False)
     student_attendance = models.ForeignKey(Student, blank=True, null=True)
     classes_attendance = models.ForeignKey(Classes, blank=True, null=True)
     date = models.DateField(auto_now_add=True)
     attendancs = models.NullBooleanField()
+    numder_of_absent= models.CharField(max_length=30)
 
     def __unicode__(self):
         return u"{} {} ,{}".format(self.student_attendance.first_name, self.student_attendance.last_name, self.classes_attendance.class_name)

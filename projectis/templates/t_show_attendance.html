@@ -3,10 +3,11 @@
 {% block content %}
 <br> <br>
 <br> <br>
+
 <ul class="nav nav-tabs">
     <li role="presentation" ><a href="{% url 't_show_meetings' %}">Meetings</a></li>
-    <li role="presentation"  ><a href="{% url 't_show_grade' %}">Grades</a></li>
-    <li role="presentation" class="active"><a href="{% url 't_show_attendance' %}">Attendance</a></li>
+    <li role="presentation" ><a href="{% url 't_show_grade'  %}">Grades</a></li>
+    <li role="presentation"class="active"><a href="{% url 't_show_attendance' %}">Attendance</a></li>
 
 </ul>
 
@@ -34,11 +35,15 @@
                    <td>{{ c.date}}</td>
                    <td>{{ c.attendancs }}</td>
                  </tr>
-                 {% endfor %}
+
                </tbody>
              </table>
            </div>
-
+           {% endfor %}
       </ul>
+
   </div> <!-- /container -->
+
+</div>
+
    {% endblock %}
