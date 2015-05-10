@@ -30,6 +30,7 @@
                         <th>student</th>
                         <th>date</th>
                         <th>attendancs</th>
+                        <th>Total number of absent</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -37,12 +38,14 @@
                         <td>{{ c.student_attendance }}</td>
                         <td>{{ c.date}}</td>
                         <td>{{ c.attendancs }}</td>
+                        <td>{{ numder_of_absent }}</td>
+
                       </tr>
-                      {% endfor %}
+
                     </tbody>
                   </table>
                 </div>
-
+                {% endfor %}
            </ul>
        </div> <!-- /container -->
        {% endblock %}

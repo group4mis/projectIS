@@ -55,6 +55,8 @@ INSTALLED_APPS = (
     'port: EMAIL_PORT',
     'username: EMAIL_HOST_USER',
     'password: EMAIL_HOST_PASSWORD',
+    #'django_print_settings',
+
 
 )
 
